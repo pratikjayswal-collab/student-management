@@ -46,7 +46,11 @@ class ConnectRelationshipsSeeder extends Seeder
         ];
         
         foreach ($rolePermissions as $roleName => $slugs) {
-            # code...
+            $role = $roleModel::where('name', $roleName)->first();
+            if ($role) {
+                $permissionIds = $permissionModel::whereIn('slug', $slugs)->pluck('id')->toArray();
+                $role->permissions()->sync($permissionIds);
+            }
         }
     }
 }

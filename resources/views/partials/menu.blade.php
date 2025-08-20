@@ -67,16 +67,19 @@
                     </div>
                 </li>
             {{-- @endcan --}}
+            @auth
+                
             <li class="nav-item">
                 <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                     <p>
                         <i class="fas fa-fw fa-sign-out-alt">
-
+                            
                         </i>
                         <span>{{ trans('global.logout') }}</span>
                     </p>
                 </a>
             </li>
+            @endauth
         </ul>
     </div>
     <!-- /.sidebar-menu -->

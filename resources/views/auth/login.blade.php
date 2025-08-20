@@ -1,14 +1,7 @@
 @extends('layouts.app')
 @section('content')
-<nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top">
-    <div class="container justify-content-center">
-        <div class="navbar-wrapper text-center">
-            <a href="#" class="navbar-brand">
-                {{ trans('panel.site_title') }}
-            </a>
-        </div>
-    </div>
-</nav>
+
+
 <div class="wrapper wrapper-full-page">
     <div class="page-header login-page header-filter">
         <div class="container">
@@ -17,7 +10,7 @@
                     <div class="card card-login mb-3">
                         <div class="card-header card-header-primary text-center">
                             <h4 class="card-title">
-                                <strong>Sign in to start your session</strong>
+                                <strong>Log In</strong>
                             </h4>
                         </div>
                         <div class="card-body login-card-body">
@@ -28,7 +21,7 @@
                             @endif
 
                             <form action="{{ route('login') }}" method="POST">
-                                {{ csrf_field() }}
+                                @csrf
 
                                 <div class="form-group">
                                     <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autofocus placeholder="{{ trans('global.login_email') }}" name="email" value="{{ old('email', null) }}">
