@@ -1,11 +1,17 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('/example', function(){
+    $admin = Admin::with('user')->get();
+    dd($admin);
+});
 
 Route::get('/admin', function () {
     return view('home');

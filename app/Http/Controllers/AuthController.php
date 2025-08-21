@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthRequest;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,15 +14,12 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request){
+    public function login(AuthRequest $request){
         try {
-            $credentials = $request->validate([
-                'email' => 'required|email',
-                'password' => 'required'
-            ]);
+            $credentials = $request->validated();
 
             if (Auth::attempt($credentials)) {
-                $request->session()->regenerate();
+                session()->regenerate();
                 return redirect()->intended(route('home'));
             } else{
                 throw new Exception('Invalid Credentials');

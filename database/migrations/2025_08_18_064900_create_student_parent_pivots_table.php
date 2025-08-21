@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Student;
+use App\Models\StudentParent;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('student_parent_pivots', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Student::class, 'student_id')->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(StudentParent::class, 'parent_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
